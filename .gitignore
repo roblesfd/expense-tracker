@@ -35,5 +35,6 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
+.env
 Planeacion.txt
-expense-tracker-32cee-firebase-adminsdk-yya74-8ab9a97546.json
+expense-tracker-32cee-firebase-adminsdk-yya74-c97ee171ca.json

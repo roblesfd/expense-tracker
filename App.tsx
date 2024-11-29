@@ -1,5 +1,4 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
 import {
   useFonts as useOpenSans,
   OpenSans_300Light,
@@ -8,8 +7,26 @@ import {
 } from "@expo-google-fonts/open-sans";
 import { theme } from "./src/infrastructure/theme";
 import { Navigation } from "./src/infrastructure/navigation";
-import { useState } from "react";
 import { ThemeProvider } from "styled-components";
+import { initializeApp } from "firebase/app";
+import { getApps } from "firebase/app";
+import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
+
+// const firebaseConfig = {
+//   apiKey: "AIzaSyD86qLpKNQ2fonM4UkG2ckjaD4gF0hcR3k",
+//   appId: "1080664393402",
+//   projectId: "expense-tracker-32cee",
+// };
+
+const firebaseConfig = {
+  apiKey: process.env.EXPO_PUBLIC_API_KEY,
+  appId: process.env.EXPO_PUBLIC_APP_ID,
+  projectId: process.env.EXPO_PUBLIC_PROJECT_ID,
+};
+
+if (!getApps().length) {
+  initializeApp(firebaseConfig);
+}
 
 export default function App() {
   const [fontsLoaded] = useOpenSans({
@@ -21,52 +38,11 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Navigation />
+        <AuthenticationContextProvider>
+          <Navigation />
+        </AuthenticationContextProvider>
       </ThemeProvider>
       <StatusBar style="auto" />
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
-
-// import { initializeApp, credential, ServiceAccount } from "firebase-admin";
-// import * as serviceAccount from "./expense-tracker-32cee-firebase-adminsdk-yya74-8ab9a97546.json";
-// initializeApp({
-//   credential: credential.cert(serviceAccount as ServiceAccount),
-// });
-
-// useEffect(() => {
-//   async function prepare() {
-//     try {
-//       const [fontsLoaded] = useOpenSans({
-//         OpenSans_300Light,
-//         OpenSans_400Regular,
-//         OpenSans_500Medium,
-//       });
-//       useMyFonts(fontsLoaded);
-//     } catch (e) {
-//       console.warn(e);
-//     } finally {
-//       setAppIsReady(true);
-//     }
-//   }
-//   prepare();
-// }, []);
-
-// const onLayoutRootView = useCallback(() => {
-//   if (appIsReady) {
-//     SplashScreen.hide();
-//   }
-// }, [appIsReady]);
-
-// if (!appIsReady) {
-//   return null;
-// }

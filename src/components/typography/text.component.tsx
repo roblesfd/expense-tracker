@@ -22,6 +22,10 @@ const error = (theme: ExecutionContext["theme"]) => `
     color: ${theme.colors.text.error};
 `;
 
+const success = (theme: ExecutionContext["theme"]) => `
+    color: ${theme.colors.text.success};
+`;
+
 const caption = (theme: ExecutionContext["theme"]) => `
     font-size: ${theme.fontSizes.caption};
     font-weight: ${theme.fontWeights.bold};
@@ -38,11 +42,12 @@ const variants = {
   label,
   caption,
   error,
+  success,
   hint,
 };
 
 type TextProps = {
-  variant: "body" | "label" | "caption" | "error" | "hint";
+  variant: "body" | "label" | "caption" | "error" | "success" | "hint";
   children: ReactNode;
 };
 
