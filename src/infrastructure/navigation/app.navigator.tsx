@@ -3,6 +3,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { AddBudget } from "../../features/budget/screens/add-budget.screen";
 import Summary from "../../features/summary/screens/summary.screen";
 import Report from "../../features/report/screens/report.screen";
+import CustomModalProvider from "../../components/modal/modal.context";
 
 const Tab = createBottomTabNavigator();
 
@@ -34,11 +35,13 @@ const createScreenOptions = ({ route }: ScreenOptionsProps) => {
 };
 
 const AppNavigator = () => (
-  <Tab.Navigator screenOptions={createScreenOptions}>
-    <Tab.Screen name="Resumen" component={Summary} />
-    <Tab.Screen name="AgregarPresupuesto" component={AddBudget} />
-    <Tab.Screen name="Informes" component={Report} />
-  </Tab.Navigator>
+  <CustomModalProvider>
+    <Tab.Navigator screenOptions={createScreenOptions}>
+      <Tab.Screen name="Resumen" component={Summary} />
+      <Tab.Screen name="AgregarPresupuesto" component={AddBudget} />
+      <Tab.Screen name="Informes" component={Report} />
+    </Tab.Navigator>
+  </CustomModalProvider>
 );
 
 export default AppNavigator;
