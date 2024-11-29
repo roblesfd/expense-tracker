@@ -3,7 +3,14 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
+
+const callFunctionWithTimeOut = (fn: () => void) => {
+  setTimeout(() => {
+    fn();
+  }, 3000);
+};
 
 type AuthenticationContextProps = {
   isAuthenticated: boolean;
@@ -13,6 +20,7 @@ type AuthenticationContextProps = {
   success: string | null;
   onRegister: (...args: any[]) => void;
   onLogin: (...args: any[]) => void;
+  onLogout: (...args: any[]) => void;
 };
 
 const defaultValue = {
@@ -23,6 +31,7 @@ const defaultValue = {
   success: null,
   onRegister: (...args: any[]) => {},
   onLogin: (...args: any[]) => {},
+  onLogout: (...args: any[]) => {},
 };
 
 export const AuthenticationContext = createContext<AuthenticationContextProps>({
@@ -51,18 +60,14 @@ export const AuthenticationContextProvider: React.FC<
         setUser(getUser);
         setIsLoading(false);
         setSuccess("Has iniciado sesión");
-        setTimeout(() => {
-          setSuccess("");
-        }, 3000);
+        callFunctionWithTimeOut(() => setSuccess(""));
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         setIsLoading(false);
         setError(`Error ${errorCode} - ${errorMessage}`);
-        setTimeout(() => {
-          setError("");
-        }, 3000);
+        callFunctionWithTimeOut(() => setError(""));
       });
   };
 
@@ -83,18 +88,30 @@ export const AuthenticationContextProvider: React.FC<
         setUser(newUser);
         setIsLoading(false);
         setSuccess("Cuenta de usuario creada exitosamente");
-        setTimeout(() => {
-          setSuccess("");
-        }, 3000);
+        callFunctionWithTimeOut(() => setSuccess(""));
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         setIsLoading(false);
         setError(`Error ${errorCode} - ${errorMessage}`);
-        setTimeout(() => {
-          setError("");
-        }, 3000);
+        callFunctionWithTimeOut(() => setError(""));
+      });
+  };
+
+  const onLogout = () => {
+    setIsLoading(true);
+    signOut(auth)
+      .then(() => {
+        setIsLoading(false);
+        setUser(null);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setIsLoading(false);
+        setError(`Error ${errorCode} - ${errorMessage}`);
+        callFunctionWithTimeOut(() => setError(""));
       });
   };
 
@@ -108,6 +125,7 @@ export const AuthenticationContextProvider: React.FC<
         success,
         onRegister,
         onLogin,
+        onLogout,
       }}
     >
       {children}

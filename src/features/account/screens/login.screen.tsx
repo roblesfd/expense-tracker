@@ -24,7 +24,7 @@ export const LoginScreen = () => {
   );
   return (
     <AccountContainer>
-      <Title variant="body">Iniciar sesión</Title>
+      <Title variant="h5">Iniciar sesión</Title>
       <Spacer size="large">
         <AuthInput
           label="Correo electrónico"

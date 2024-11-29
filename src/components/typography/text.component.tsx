@@ -13,6 +13,18 @@ const defaultTextStyles = (theme: ExecutionContext["theme"]) => `
 const body = (theme: ExecutionContext["theme"]) => `
     font-size: ${theme.fontSizes.body};
 `;
+const h5 = (theme: ExecutionContext["theme"]) => `
+    font-size: ${theme.fontSizes.h5};
+    font-weight: ${theme.fontWeights.medium};
+`;
+const h4 = (theme: ExecutionContext["theme"]) => `
+    font-size: ${theme.fontSizes.h4};
+    font-weight: ${theme.fontWeights.medium};
+`;
+const h3 = (theme: ExecutionContext["theme"]) => `
+    font-size: ${theme.fontSizes.h3};
+    font-weight: ${theme.fontWeights.medium};
+`;
 
 const hint = (theme: ExecutionContext["theme"]) => `
     font-size: ${theme.fontSizes.body};
@@ -44,10 +56,22 @@ const variants = {
   error,
   success,
   hint,
+  h5,
+  h4,
+  h3,
 };
 
 type TextProps = {
-  variant: "body" | "label" | "caption" | "error" | "success" | "hint";
+  variant:
+    | "body"
+    | "label"
+    | "caption"
+    | "error"
+    | "success"
+    | "hint"
+    | "h5"
+    | "h4"
+    | "h3";
   children: ReactNode;
 };
 

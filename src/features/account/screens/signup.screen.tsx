@@ -12,7 +12,6 @@ import {
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { Text } from "../../../components/typography/text.component";
-import { Container } from "../../../infrastructure/theme/global";
 
 export const SignupScreen = () => {
   const navigation = useNavigation();
@@ -25,7 +24,7 @@ export const SignupScreen = () => {
 
   return (
     <AccountContainer>
-      <Title variant="body">Registro de cuenta</Title>
+      <Title variant="h5">Registro de cuenta</Title>
       <Spacer size="large">
         <AuthInput
           label="Correo electrónico"
