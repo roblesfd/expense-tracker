@@ -30,7 +30,7 @@ const getVariant = ({ position, size, theme }: GetVariantProps): string => {
 
 type SpacerViewProps = {
   variant: string;
-  children: ReactNode;
+  children?: ReactNode;
 };
 
 const SpacerView: React.FC<SpacerViewProps> = styled.View`
@@ -40,7 +40,7 @@ const SpacerView: React.FC<SpacerViewProps> = styled.View`
 type SpacerProps = {
   position?: "top" | "left" | "right" | "bottom";
   size?: "small" | "medium" | "large";
-  children: ReactNode;
+  children?: ReactNode;
 };
 
 export const Spacer: React.FC<SpacerProps> = ({

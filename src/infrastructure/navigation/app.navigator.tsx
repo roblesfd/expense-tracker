@@ -4,8 +4,11 @@ import Transactions from "../../features/transaction/screens/transactions.screen
 import Report from "../../features/report/screens/report.screen";
 import CustomModalProvider from "../../components/modal/modal.context";
 import Categories from "../../features/category/screens/categories.screen";
+import { createStackNavigator } from "@react-navigation/stack";
+import Accounts from "../../features/account/screens/account.screen";
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 const TAB_ICON: Record<string, keyof typeof Ionicons.glyphMap> = {
   Transacciones: "cash-sharp",
@@ -34,13 +37,26 @@ const createScreenOptions = ({ route }: ScreenOptionsProps) => {
   };
 };
 
-const AppNavigator = () => (
-  <CustomModalProvider>
+function HomeTabs() {
+  return (
     <Tab.Navigator screenOptions={createScreenOptions}>
       <Tab.Screen name="Transacciones" component={Transactions} />
       <Tab.Screen name="Informes" component={Report} />
       <Tab.Screen name="Categorias" component={Categories} />
     </Tab.Navigator>
+  );
+}
+
+const AppNavigator = () => (
+  <CustomModalProvider>
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Inicio"
+        component={HomeTabs}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen name="Cuentas" component={Accounts} />
+    </Stack.Navigator>
   </CustomModalProvider>
 );
 

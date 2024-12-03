@@ -1,6 +1,7 @@
-import styled, { useTheme } from "styled-components/native";
+import styled from "styled-components/native";
 import { Text } from "../../../components/typography/text.component";
 import { View } from "react-native";
+import TransactionProps from "../../../types/transaction.type";
 
 const TransactionItemContainer = styled.View`
   display: flex;
@@ -11,6 +12,7 @@ const TransactionItemContainer = styled.View`
   background-color: ${(props) => props.theme.colors.bg.primary};
   padding-horizontal: 10px;
   padding-vertical: 15px;
+  border-radius: 5px;
 `;
 
 const TransactionItemTitle = styled.View`
@@ -22,29 +24,37 @@ const TransactionItemTitle = styled.View`
 `;
 
 type TransactionItemProps = {
-  transaction: {
-    date: string;
-    amountIngreso: string;
-    amountGasto: string;
+  transactionByDay: {
+    noDay: number;
+    dayofWeek: string;
+    shortDate: string;
+    totalAmountExpenses: number;
+    totalAmountIncomes: number;
   };
 };
 
 export const TransactionItemByDate = ({
-  transaction,
+  transactionByDay,
 }: TransactionItemProps) => {
-  const { date, amountIngreso, amountGasto } = transaction;
+  const {
+    noDay,
+    dayofWeek,
+    shortDate,
+    totalAmountExpenses,
+    totalAmountIncomes,
+  } = transactionByDay;
   return (
     <TransactionItemContainer>
       <TransactionItemTitle>
-        <Text variant="h5">02</Text>
+        <Text variant="h5">{noDay}</Text>
         <View>
-          <Text variant="caption">Lunes</Text>
-          <Text variant="body">Dic. 2024</Text>
+          <Text variant="caption">{dayofWeek}</Text>
+          <Text variant="body">{shortDate}</Text>
         </View>
       </TransactionItemTitle>
       <View>
-        <Text variant="success">$500.00</Text>
-        <Text variant="error">$500.00</Text>
+        <Text variant="success">${totalAmountIncomes}</Text>
+        <Text variant="error">${totalAmountExpenses}</Text>
       </View>
     </TransactionItemContainer>
   );
