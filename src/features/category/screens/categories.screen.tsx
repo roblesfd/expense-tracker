@@ -1,13 +1,13 @@
 import React from "react";
-import { View } from "react-native";
 import { Text } from "../../../components/typography/text.component";
+import { View } from "react-native";
 
-const Account = () => {
+const Categories = () => {
   return (
     <View>
-      <Text variant="body">Account</Text>
+      <Text variant="body">Categories</Text>
     </View>
   );
 };
 
-export default Account;
+export default Categories;

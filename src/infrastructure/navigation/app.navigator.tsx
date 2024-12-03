@@ -1,16 +1,16 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { AddBudget } from "../../features/budget/screens/add-budget.screen";
-import Summary from "../../features/summary/screens/summary.screen";
+import Transactions from "../../features/transaction/screens/transactions.screen";
 import Report from "../../features/report/screens/report.screen";
 import CustomModalProvider from "../../components/modal/modal.context";
+import Categories from "../../features/category/screens/categories.screen";
 
 const Tab = createBottomTabNavigator();
 
 const TAB_ICON: Record<string, keyof typeof Ionicons.glyphMap> = {
-  AgregarPresupuesto: "documents",
-  Resumen: "document-text",
+  Transacciones: "cash-sharp",
   Informes: "stats-chart",
+  Categorias: "grid",
 };
 
 type ScreenOptionsProps = {
@@ -37,9 +37,9 @@ const createScreenOptions = ({ route }: ScreenOptionsProps) => {
 const AppNavigator = () => (
   <CustomModalProvider>
     <Tab.Navigator screenOptions={createScreenOptions}>
-      <Tab.Screen name="Resumen" component={Summary} />
-      <Tab.Screen name="AgregarPresupuesto" component={AddBudget} />
+      <Tab.Screen name="Transacciones" component={Transactions} />
       <Tab.Screen name="Informes" component={Report} />
+      <Tab.Screen name="Categorias" component={Categories} />
     </Tab.Navigator>
   </CustomModalProvider>
 );

@@ -1,8 +1,7 @@
 import React, { ReactNode } from "react";
-import { Pressable, View } from "react-native";
+import { View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import styled from "styled-components/native";
-import { Button } from "react-native-paper";
 
 const FloatingButton = styled.Pressable`
   border-width: 1px;
@@ -20,7 +19,9 @@ const FloatingButton = styled.Pressable`
   shadow-offset: 0px 2px;
   shadow-opacity: 0.3;
   shadow-radius: 3.84px;
-  elevation: 5; /* Para Android */
+  elevation: 5;
+
+  /* Para Android */
   z-index: 10;
 `;
 

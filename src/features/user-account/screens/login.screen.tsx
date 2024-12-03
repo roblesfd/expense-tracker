@@ -1,5 +1,3 @@
-import { View } from "react-native";
-import { Container } from "../../../infrastructure/theme/global";
 import { useNavigation } from "@react-navigation/native";
 import { ActivityIndicator, Button, MD2Colors } from "react-native-paper";
 import { useContext, useState } from "react";

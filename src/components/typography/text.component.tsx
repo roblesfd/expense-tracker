@@ -21,8 +21,19 @@ const h4 = (theme: ExecutionContext["theme"]) => `
     font-size: ${theme.fontSizes.h4};
     font-weight: ${theme.fontWeights.medium};
 `;
+
 const h3 = (theme: ExecutionContext["theme"]) => `
     font-size: ${theme.fontSizes.h3};
+    font-weight: ${theme.fontWeights.medium};
+`;
+
+const h2 = (theme: ExecutionContext["theme"]) => `
+    font-size: ${theme.fontSizes.h2};
+    font-weight: ${theme.fontWeights.medium};
+`;
+
+const h1 = (theme: ExecutionContext["theme"]) => `
+    font-size: ${theme.fontSizes.h1};
     font-weight: ${theme.fontWeights.medium};
 `;
 
@@ -32,10 +43,14 @@ const hint = (theme: ExecutionContext["theme"]) => `
 
 const error = (theme: ExecutionContext["theme"]) => `
     color: ${theme.colors.text.error};
+        font-size: ${theme.fontSizes.body};
+
 `;
 
 const success = (theme: ExecutionContext["theme"]) => `
     color: ${theme.colors.text.success};
+        font-size: ${theme.fontSizes.body};
+
 `;
 
 const caption = (theme: ExecutionContext["theme"]) => `
@@ -59,6 +74,8 @@ const variants = {
   h5,
   h4,
   h3,
+  h2,
+  h1,
 };
 
 type TextProps = {

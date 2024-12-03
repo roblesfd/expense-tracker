@@ -38,3 +38,5 @@ yarn-error.*
 .env
 Planeacion.txt
 expense-tracker-32cee-firebase-adminsdk-yya74-c97ee171ca.json
+
+discarded.tsx
