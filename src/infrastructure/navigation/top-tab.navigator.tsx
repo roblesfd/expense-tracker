@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useWindowDimensions } from "react-native";
 import { TabView, SceneMap } from "react-native-tab-view";
-import ReportIncomes from "./report-incomes.screen";
-import ReportExpenses from "./report-expenses.screen";
+import ReportIncomes from "../../features/report/screens/report-incomes.screen";
+import ReportExpenses from "../../features/report/screens/report-expenses.screen";
 
 const renderScene = SceneMap({
   reportincomes: ReportIncomes,
@@ -14,7 +14,7 @@ const routes = [
   { key: "reportexpenses", title: "Gastos" },
 ];
 
-const Report = () => {
+export default function TopTabNavigator() {
   const layout = useWindowDimensions();
   const [index, setIndex] = useState(0);
   return (
@@ -25,14 +25,4 @@ const Report = () => {
       initialLayout={{ width: layout.width }}
     />
   );
-};
-
-export default Report;
-
-/*
-  Estructura
-  - TabNav Ingreo & Cuenta
-  - Ingresos/Gastos por categoria
-  - Ingresos/Gastos por cuenta
-  - Ingresos/Gastos por meses
-*/
+}

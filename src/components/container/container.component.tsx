@@ -24,7 +24,7 @@ const Container = ({
     justify-content: "center";
     border-radius: 15px;
     border: 1px solid ${borderColor};
-    padding-vertical: 15px;
+    padding-vertical: 10px;
     padding-horizontal: 12px;
     margin: 10px;
   `;

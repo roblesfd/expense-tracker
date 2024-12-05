@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Text } from "../../../components/typography/text.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import Container from "../../../components/container/container.component";
 import { TransactionItem } from "../components/transaction-summary.component";
-import { Button, IconButton } from "react-native-paper";
+import { Button } from "react-native-paper";
 import { TransactionItemByDate } from "../components/transaction-by-date.component";
 import { useTheme } from "styled-components";
 import { ScrollView, View } from "react-native";
@@ -16,6 +16,7 @@ import {
   transactionByDateList,
 } from "../../../utils/mockData";
 import { useNavigation } from "@react-navigation/native";
+import TotalBalance from "../components/transaction-balance.component";
 
 const generateTransactionByDateList = (dropdownList: any[]) => {
   return dropdownList.map((dropdown, key) => (
@@ -37,28 +38,13 @@ const generateTransactionByDateList = (dropdownList: any[]) => {
 
 const Transactions = () => {
   const theme = useTheme();
-  const [totalBalanceVisible, setTotalBalanceVisible] = useState(false);
   const navigation = useNavigation();
 
   return (
     <ScrollView>
       {/* Seccion Resumen Transacciones */}
       <Container borderColor={`${theme.colors.ui.secondary}`}>
-        <FlexLayout justifyContent="space-between" alignItems="center">
-          <View style={{ flex: 1 }}>
-            <Text variant="h5">Saldo total</Text>
-            <Text variant="h4">
-              {totalBalanceVisible ? "$700.00 mxn" : "$*******"}
-            </Text>
-          </View>
-          <IconButton
-            icon={totalBalanceVisible ? "eye" : "eye-off"}
-            iconColor={theme.colors.brand.primary}
-            size={25}
-            onPress={() => setTotalBalanceVisible(!totalBalanceVisible)}
-          />
-        </FlexLayout>
-
+        <TotalBalance total={450} />
         <Container borderColor={`${theme.colors.ui.secondary}`}>
           <Spacer size="small">
             <TransactionItem

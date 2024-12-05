@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react";
+import { StyleProp, ViewStyle } from "react-native";
 import styled from "styled-components/native";
 
 type FlexLayoutProps = {
@@ -14,6 +15,7 @@ type FlexLayoutProps = {
   flexWrap?: "nowrap" | "wrap" | "wrap-reverse";
   gap?: number; // Nuevo: Espaciado entre los elementos
   children: ReactNode | ReactNode[];
+  style?: StyleProp<ViewStyle>;
 };
 
 const FlexLayout: React.FC<FlexLayoutProps> = styled.View<FlexLayoutProps>`

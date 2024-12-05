@@ -5,6 +5,8 @@ const sizeVariant = {
   small: 1,
   medium: 2,
   large: 3,
+  extraLarge: 4,
+  "2xl": 5,
 };
 
 const positionVariant = {
@@ -16,7 +18,7 @@ const positionVariant = {
 
 type GetVariantProps = {
   position: "top" | "left" | "right" | "bottom";
-  size: "small" | "medium" | "large";
+  size: "small" | "medium" | "large" | "extraLarge" | "2xl";
   theme: DefaultTheme;
 };
 
@@ -39,7 +41,7 @@ const SpacerView: React.FC<SpacerViewProps> = styled.View`
 
 type SpacerProps = {
   position?: "top" | "left" | "right" | "bottom";
-  size?: "small" | "medium" | "large";
+  size?: "small" | "medium" | "large" | "extraLarge" | "2xl";
   children?: ReactNode;
 };
 
