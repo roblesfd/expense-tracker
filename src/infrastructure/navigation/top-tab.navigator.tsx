@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useWindowDimensions } from "react-native";
 import { TabView, SceneMap } from "react-native-tab-view";
-import ReportIncomes from "../../features/report/screens/report-incomes.screen";
-import ReportExpenses from "../../features/report/screens/report-expenses.screen";
+import ReportIncomes from "../../features/report/screens/income-reports.screen";
+import ReportExpenses from "../../features/report/screens/expense-reports.screen";
 
 const renderScene = SceneMap({
   reportincomes: ReportIncomes,

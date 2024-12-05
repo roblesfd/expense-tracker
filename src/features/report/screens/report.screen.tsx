@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useWindowDimensions } from "react-native";
 import { TabView, SceneMap } from "react-native-tab-view";
-import ReportIncomes from "./report-incomes.screen";
-import ReportExpenses from "./report-expenses.screen";
+import ReportIncomes from "./income-reports.screen";
+import ReportExpenses from "./expense-reports.screen";
 
 const renderScene = SceneMap({
   reportincomes: ReportIncomes,
@@ -28,11 +28,3 @@ const Report = () => {
 };
 
 export default Report;
-
-/*
-  Estructura
-  - TabNav Ingreo & Cuenta
-  - Ingresos/Gastos por categoria
-  - Ingresos/Gastos por cuenta
-  - Ingresos/Gastos por meses
-*/
