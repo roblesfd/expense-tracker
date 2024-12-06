@@ -4,9 +4,6 @@ export type OBJ = { [key: string]: any };
 
 export type OPT<X> = X | undefined | null;
 
-const extractAttributeValue = (attr: any, arre: any[]) =>
-  arre.map((item) => item[attr]);
-
 //Curry
 type Curry<P, R> = P extends [infer H]
   ? (arg: H) => R
@@ -50,4 +47,32 @@ function pipeline<FNS extends FN[]>(...fns: FNS): FN {
   );
 }
 
-export { extractAttributeValue, curry, pipeline };
+const extractAttributeValue = (attr: any, arre: any[]) =>
+  arre.map((item) => item[attr]);
+
+const randomInt = (range: number) => Math.floor(Math.random() * range);
+
+const pickRandom = (items: any[]) => items[randomInt(items.length)];
+
+const shortenString = (str: string, maxChars: number = 15) =>
+  str.slice(0, maxChars);
+
+const capitalizeString = (str: string) =>
+  str ? str[0].toUpperCase() + str.slice() : "";
+
+const formatToCurrency = (amount: number): string =>
+  `$${amount.toLocaleString("en-US")}`;
+
+const genMonthWithYearList = (monthList: string[], year: number) =>
+  [...monthList].map((month) => `${month} ${year}`);
+
+export {
+  extractAttributeValue,
+  curry,
+  pipeline,
+  pickRandom,
+  shortenString,
+  capitalizeString,
+  formatToCurrency,
+  genMonthWithYearList,
+};

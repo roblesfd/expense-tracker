@@ -29,7 +29,7 @@ const createScreenOptions = ({ route }: ScreenOptionsProps) => {
   const iconName = TAB_ICON[route.name];
   return {
     tabBarIcon: ({ size, color }: TabBarIconProps) => {
-      const customSize = size || 28;
+      const customSize = size || 30;
       const customColor = color || "blue";
       return <Ionicons name={iconName} size={customSize} color={customColor} />;
     },

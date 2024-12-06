@@ -1,7 +1,8 @@
-import styled from "styled-components/native";
+import styled, { useTheme } from "styled-components/native";
 import { Text } from "../../../components/typography/text.component";
 import { View } from "react-native";
 import TransactionProps from "../../../types/transaction.type";
+import { IconButton } from "react-native-paper";
 
 const TransactionItemContainer = styled.View`
   display: flex;
@@ -31,10 +32,14 @@ type TransactionItemProps = {
     totalAmountExpenses: number;
     totalAmountIncomes: number;
   };
+  isOpen: boolean;
+  setIsOpen: (arg: boolean) => void;
 };
 
 export const TransactionItemByDate = ({
   transactionByDay,
+  isOpen,
+  setIsOpen,
 }: TransactionItemProps) => {
   const {
     noDay,
@@ -43,6 +48,7 @@ export const TransactionItemByDate = ({
     totalAmountExpenses,
     totalAmountIncomes,
   } = transactionByDay;
+  const theme = useTheme();
   return (
     <TransactionItemContainer>
       <TransactionItemTitle>
@@ -56,6 +62,12 @@ export const TransactionItemByDate = ({
         <Text variant="success">${totalAmountIncomes}</Text>
         <Text variant="error">${totalAmountExpenses}</Text>
       </View>
+      <IconButton
+        icon={isOpen ? "arrow-up-drop-circle" : "arrow-down-drop-circle"}
+        iconColor={theme.colors.brand.primary}
+        size={25}
+        onPress={() => setIsOpen(!isOpen)}
+      />
     </TransactionItemContainer>
   );
 };

@@ -7,11 +7,14 @@ import {
   barChartData,
   mockCategoryListForChart,
   mockCuentaListForChart,
+  monthsAbbreviated,
 } from "../../../utils/mockData";
 import { ScrollView } from "react-native";
 import {
   curry,
   extractAttributeValue,
+  formatToCurrency,
+  genMonthWithYearList,
   pipeline,
 } from "../../../utils/data-functions";
 import { sumTotal } from "../../../utils/math";
@@ -44,7 +47,7 @@ const ReportExpenses = () => {
           <Spacer size="large">
             <CustomPieChart
               title="Gastos por categoría"
-              innerCircleValue={totalAmountIncomes.toString()}
+              innerCircleValue={formatToCurrency(totalAmountIncomes)}
               data={filteredExpenses}
             />
           </Spacer>
@@ -52,7 +55,7 @@ const ReportExpenses = () => {
           <Spacer size="large">
             <CustomPieChart
               title="Gastos por cuenta"
-              innerCircleValue={totalAmountAccounts.toString()}
+              innerCircleValue={formatToCurrency(totalAmountAccounts)}
               data={mockCuentaListForChart}
             />
           </Spacer>
@@ -60,33 +63,22 @@ const ReportExpenses = () => {
         {/* Resumen por Meses */}
         <Container borderColor={theme.colors.ui.primary}>
           <CustomBarChart title="Gastos por meses" data={barChartData} />
-          <Spacer size="medium">
-            <FlexLayout>
-              <Text variant="bodyMedium">Ene. 2024</Text>
-              <Text>$5,000</Text>
-            </FlexLayout>
-            <HorizontalSeparator thickness={1} />
-          </Spacer>
-          <Spacer size="medium">
-            <FlexLayout>
-              <Text variant="bodyMedium">Feb. 2024</Text>
-              <Text>$5,000</Text>
-            </FlexLayout>
-            <HorizontalSeparator thickness={1} />
-          </Spacer>
-          <Spacer size="medium">
-            <FlexLayout>
-              <Text variant="bodyMedium">Mar. 2024</Text>
-              <Text>$5,000</Text>
-            </FlexLayout>
-            <HorizontalSeparator thickness={1} />
-          </Spacer>
-          <Spacer size="medium">
-            <FlexLayout>
-              <Text variant="bodyMedium">Abr. 2024</Text>
-              <Text>$5,000</Text>
-            </FlexLayout>
-          </Spacer>
+          {genMonthWithYearList(monthsAbbreviated, 2024).map((monthYear) => (
+            <Spacer size="medium">
+              <FlexLayout>
+                <Text variant="bodyMedium">{monthYear}</Text>
+                <Text
+                  style={{
+                    color: theme.colors.ui.success,
+                    fontWeight: "semibold",
+                  }}
+                >
+                  $5,000
+                </Text>
+              </FlexLayout>
+              <HorizontalSeparator thickness={1} />
+            </Spacer>
+          ))}
         </Container>
       </ScrollView>
     </Spacer>

@@ -10,13 +10,13 @@ type CustomBarChartProps = {
 
 const CustomBarChart = ({ data, title }: CustomBarChartProps) => {
   return (
-    <View>
+    <View style={{ paddingHorizontal: 0 }}>
       <Spacer size="large" position="bottom">
         <Text variant="titleMedium" style={{ textAlign: "center" }}>
-          {title as string}
+          {title}
         </Text>
       </Spacer>
-      <BarChart data={data} />;
+      <BarChart data={data} barWidth={13} spacing={8} barBorderRadius={3} />;
     </View>
   );
 };

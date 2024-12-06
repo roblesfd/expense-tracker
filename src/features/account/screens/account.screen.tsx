@@ -3,8 +3,6 @@ import { ScrollView } from "react-native";
 import TotalBalance from "../../transaction/components/transaction-balance.component";
 import Container from "../../../components/container/container.component";
 import { useTheme } from "styled-components/native";
-import { Spacer } from "../../../components/spacer/spacer.component";
-import Dropdown from "../../../components/dropdown/dropdown.component";
 import AccountSummary from "../components/account-summary.component";
 import {
   accountBancoSummary,

@@ -1,10 +1,5 @@
 import React, { createContext, ReactNode, useContext, useState } from "react";
-import {
-  Modal,
-  Portal,
-  Text,
-  Provider as PaperProvider,
-} from "react-native-paper";
+import { Modal, Portal, Provider as PaperProvider } from "react-native-paper";
 
 type ModalContextProps = {
   showModal: () => void;

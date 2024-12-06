@@ -3,6 +3,8 @@ import { Text } from "../../../components/typography/text.component";
 import { View } from "react-native";
 import TransactionProps from "../../../types/transaction.type";
 import { Ionicons } from "@expo/vector-icons";
+import { IconButton } from "react-native-paper";
+import { shortenString } from "../../../utils/data-functions";
 
 const TransactionItemDetailContainer = styled.View`
   display: flex;
@@ -37,7 +39,7 @@ const TransactionItemDetail = ({ transaction }: TransactionItemDetailProps) => {
         <Ionicons name="calendar" size={25} color="inherit" />
         <View>
           <Text variant="caption">{category.name}</Text>
-          <Text variant="body">{description}</Text>
+          <Text variant="body">{shortenString(description, 35)}...</Text>
           <Text variant="body">{account.name}</Text>
         </View>
       </TransactionItemDetailTitle>

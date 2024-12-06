@@ -1,3 +1,4 @@
+import { Text } from "react-native";
 import AccountProps from "../types/account.type";
 import CategoryProps from "../types/category.type";
 import TransactionProps from "../types/transaction.type";
@@ -150,11 +151,110 @@ const mockCuentaListForChart = [
   },
 ];
 
+const transactionSummaryList = [
+  {
+    icon: "arrow-up",
+    variant: "success",
+    title: "Ingresos",
+    amount: "$100.00",
+    transactionType: "ingreso",
+  },
+  {
+    icon: "arrow-down",
+    variant: "error",
+    title: "Gastos",
+    amount: "$50.00",
+    transactionType: "gasto",
+  },
+  {
+    icon: "analytics",
+    title: "Balance",
+    amount: "$50.00",
+    transactionType: "balance",
+  },
+];
+
 const barChartData = [
-  { value: 15, frontColor: "green" },
-  { value: 30, frontColor: "green" },
-  { value: 26, frontColor: "green" },
-  { value: 40, frontColor: "green" },
+  {
+    value: 15,
+    frontColor: "green",
+    labelComponent: () => <Text style={{ fontSize: 9 }}>Ene</Text>,
+  },
+  {
+    value: 30,
+    frontColor: "green",
+    labelComponent: () => <Text style={{ fontSize: 9 }}>Ene</Text>,
+  },
+  {
+    value: 26,
+    frontColor: "green",
+    labelComponent: () => <Text style={{ fontSize: 9 }}>Feb</Text>,
+  },
+  {
+    value: 40,
+    frontColor: "green",
+    labelComponent: () => <Text style={{ fontSize: 9 }}>Mar</Text>,
+  },
+  {
+    value: 40,
+    frontColor: "green",
+    labelComponent: () => <Text style={{ fontSize: 9 }}>Abr</Text>,
+  },
+  {
+    value: 40,
+    frontColor: "green",
+    labelComponent: () => <Text style={{ fontSize: 9 }}>May</Text>,
+  },
+  {
+    value: 40,
+    frontColor: "green",
+    labelComponent: () => <Text style={{ fontSize: 9 }}>Jun</Text>,
+  },
+  {
+    value: 40,
+    frontColor: "green",
+    labelComponent: () => <Text style={{ fontSize: 9 }}>Jul</Text>,
+  },
+  {
+    value: 40,
+    frontColor: "green",
+    labelComponent: () => <Text style={{ fontSize: 9 }}>Ago</Text>,
+  },
+  {
+    value: 40,
+    frontColor: "green",
+    labelComponent: () => <Text style={{ fontSize: 9 }}>Sep</Text>,
+  },
+  {
+    value: 40,
+    frontColor: "green",
+    labelComponent: () => <Text style={{ fontSize: 9 }}>Oct</Text>,
+  },
+  {
+    value: 40,
+    frontColor: "green",
+    labelComponent: () => <Text style={{ fontSize: 9 }}>Nov</Text>,
+  },
+  {
+    value: 40,
+    frontColor: "green",
+    labelComponent: () => <Text style={{ fontSize: 9 }}>Dic</Text>,
+  },
+];
+
+const monthsAbbreviated = [
+  "Ene.",
+  "Feb.",
+  "Mar.",
+  "Abr.",
+  "May.",
+  "Jun.",
+  "Jul.",
+  "Ago.",
+  "Sep.",
+  "Oct.",
+  "Nov.",
+  "Dic.",
 ];
 
 const accountBilleteraSummary: AccountProps = {
@@ -177,8 +277,10 @@ export {
   mockCategoryObject,
   mockCategoryList,
   mockCategoryListForChart,
+  transactionSummaryList,
   barChartData,
   mockCuentaListForChart,
+  monthsAbbreviated,
   accountBilleteraSummary,
   accountBancoSummary,
 };

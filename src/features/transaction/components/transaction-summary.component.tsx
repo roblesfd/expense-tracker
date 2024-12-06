@@ -1,6 +1,6 @@
-import styled from "styled-components/native";
-import { Text } from "../../../components/typography/text.component";
+import styled, { useTheme } from "styled-components/native";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { Text } from "react-native-paper";
 
 const TransactionItemContainer = styled.View`
   display: flex;
@@ -20,18 +20,10 @@ const TransactionItemTitle = styled.View`
 
 type TransactionItemProps = {
   icon: keyof typeof Ionicons.glyphMap;
-  variant:
-    | "body"
-    | "label"
-    | "caption"
-    | "error"
-    | "success"
-    | "hint"
-    | "h5"
-    | "h4"
-    | "h3";
+  variant: string;
   title: string;
   amount: string;
+  transactionType: string;
 };
 
 export const TransactionItem = ({
@@ -39,14 +31,16 @@ export const TransactionItem = ({
   variant,
   title,
   amount,
+  transactionType,
 }: TransactionItemProps) => {
+  const theme = useTheme();
   return (
     <TransactionItemContainer>
       <TransactionItemTitle>
-        <Ionicons name={icon} size={25} color={`theme.colors.ui.${variant}`} />
-        <Text variant="body">{title}</Text>
+        <Ionicons name={icon} size={25} color={theme.colors.ui[variant]} />
+        <Text>{title}</Text>
       </TransactionItemTitle>
-      <Text variant={variant}>{amount}</Text>
+      <Text style={{ color: theme.colors.ui[variant] }}>{amount}</Text>
     </TransactionItemContainer>
   );
 };

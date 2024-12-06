@@ -6,37 +6,56 @@ import { TransactionItem } from "../components/transaction-summary.component";
 import { Button } from "react-native-paper";
 import { TransactionItemByDate } from "../components/transaction-by-date.component";
 import { useTheme } from "styled-components";
-import { ScrollView, View } from "react-native";
+import { ScrollView } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import FlexLayout from "../../../components/display/flex.component";
 import Dropdown from "../../../components/dropdown/dropdown.component";
 import TransactionItemDetail from "../components/transaction-item-detail.component";
 import {
-  emptyTransactionObject,
   transactionByDateList,
+  transactionSummaryList,
 } from "../../../utils/mockData";
 import { useNavigation } from "@react-navigation/native";
 import TotalBalance from "../components/transaction-balance.component";
 
 const generateTransactionByDateList = (dropdownList: any[]) => {
   return dropdownList.map((dropdown, key) => (
-    <Spacer size="medium">
+    <Spacer size="medium" key={key}>
       <Dropdown
         items={dropdown}
         placeholder="Select an option"
         width="100%"
-        childrenHeader={<TransactionItemByDate transactionByDay={dropdown} />}
+        childrenHeader={(isOpen, setIsOpen) => (
+          <TransactionItemByDate
+            transactionByDay={dropdown}
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+          />
+        )}
       >
-        {dropdown.transactionList.map((transaction: any) => (
-          <TransactionItemDetail transaction={transaction} />
+        {dropdown.transactionList.map((transaction: any, key: any) => (
+          <TransactionItemDetail key={key} transaction={transaction} />
         ))}
-        <TransactionItemDetail transaction={emptyTransactionObject} />
       </Dropdown>
     </Spacer>
   ));
 };
 
-const Transactions = () => {
+const generateTransactionSummaryList = (list: any[]) => {
+  return list.map((item, key) => (
+    <Spacer key={key} size="small">
+      <TransactionItem
+        icon={item.icon as keyof typeof Ionicons.glyphMap}
+        variant={item.variant as string}
+        title={item.title}
+        amount={item.amount}
+        transactionType={item.transactionType}
+      />
+    </Spacer>
+  ));
+};
+
+const Transactions = ({ route }: { route: any }) => {
   const theme = useTheme();
   const navigation = useNavigation();
 
@@ -46,30 +65,7 @@ const Transactions = () => {
       <Container borderColor={`${theme.colors.ui.secondary}`}>
         <TotalBalance total={450} />
         <Container borderColor={`${theme.colors.ui.secondary}`}>
-          <Spacer size="small">
-            <TransactionItem
-              icon="arrow-up"
-              variant="success"
-              title="Ingresos"
-              amount="100.00"
-            />
-          </Spacer>
-          <Spacer size="small">
-            <TransactionItem
-              icon="arrow-down"
-              variant="error"
-              title="Gastos"
-              amount="50.00"
-            />
-          </Spacer>
-          <Spacer size="small">
-            <TransactionItem
-              icon="analytics"
-              variant="body"
-              title="Balance"
-              amount="+50.00"
-            />
-          </Spacer>
+          {generateTransactionSummaryList(transactionSummaryList)}
         </Container>
       </Container>
       <Container>

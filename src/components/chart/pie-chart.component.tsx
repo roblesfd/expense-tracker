@@ -55,7 +55,7 @@ const CustomPieChart = ({
               <Text
                 style={{ color: "black", fontSize: 25, textAlign: "center" }}
               >
-                {innerCircleValue}
+                {innerCircleValue as string}
               </Text>
             </View>
           );

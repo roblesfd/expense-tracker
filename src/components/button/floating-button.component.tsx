@@ -1,11 +1,15 @@
 import React, { ReactNode } from "react";
-import { View } from "react-native";
+import { Pressable, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import styled from "styled-components/native";
 
-const FloatingButton = styled.Pressable`
-  border-width: 1px;
-  border-color: red;
+type FloatingButtonProps = {
+  children?: ReactNode;
+  bgColor: string;
+  onPress: () => void;
+};
+
+const StyledFloatingButton = styled(Pressable)<{ bgColor: string }>`
   align-items: center;
   justify-content: center;
   width: 70px;
@@ -13,35 +17,30 @@ const FloatingButton = styled.Pressable`
   position: absolute;
   bottom: 55px;
   right: 7px;
-  background-color: red;
+  background-color: ${({ bgColor }) => bgColor || "inherit"};
   border-radius: 35px;
   shadow-color: #000;
   shadow-offset: 0px 2px;
   shadow-opacity: 0.3;
   shadow-radius: 3.84px;
   elevation: 5;
-
   /* Para Android */
   z-index: 10;
 `;
 
-type FloatingButtonProps = {
-  children: ReactNode;
-  onPress: () => void;
-};
-
-const FloatingButtonContainer: React.FC<FloatingButtonProps> = ({
+const FloatingButton: React.FC<FloatingButtonProps> = ({
   children,
+  bgColor,
   onPress,
 }) => {
   return (
     <View style={{ flex: 1 }}>
-      <FloatingButton onPress={onPress}>
+      <StyledFloatingButton onPress={onPress} bgColor={bgColor}>
         <Ionicons name="add" size={25} color="white" />
-      </FloatingButton>
+      </StyledFloatingButton>
       {children}
     </View>
   );
 };
 
-export default FloatingButtonContainer;
+export default FloatingButton;

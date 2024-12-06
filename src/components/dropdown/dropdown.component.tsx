@@ -16,19 +16,36 @@ const DropdownContainer: React.FC<DropdownContainerProps> = styled.View`
 
 type DropdownHeaderProps = {
   children: ReactNode | ReactNode[];
+  isOpen: boolean;
   onPress: () => void;
 };
 
-const DropdownHeader: React.FC<DropdownHeaderProps> = styled(TouchableOpacity)`
+const StyledTouchableOpacity = styled(TouchableOpacity)<{ isOpen: boolean }>`
   padding: 10px 15px;
-  border-bottom-width: 1px;
+  border-bottom-width: ${({ isOpen }) => (isOpen ? "1px" : "0px")};
+  border-bottom-color: ${({ theme }) => theme.colors.ui.secondary};
 `;
+
+const DropdownHeader: React.FC<DropdownHeaderProps> = ({
+  children,
+  isOpen,
+  onPress,
+}) => (
+  <StyledTouchableOpacity isOpen={isOpen} onPress={onPress}>
+    {children}
+  </StyledTouchableOpacity>
+);
 
 type DropdownProps = {
   items: any[];
   placeholder?: string | ReactNode;
   width?: string;
-  childrenHeader: ReactNode | ReactNode[];
+  childrenHeader:
+    | ReactNode
+    | ((
+        isOpen: boolean,
+        setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+      ) => ReactNode);
   children: ReactNode | ReactNode[];
 };
 
@@ -42,8 +59,10 @@ const Dropdown: React.FC<DropdownProps> = ({
 
   return (
     <DropdownContainer width={width}>
-      <DropdownHeader onPress={() => setIsOpen(!isOpen)}>
-        {childrenHeader}
+      <DropdownHeader isOpen={isOpen} onPress={() => setIsOpen(!isOpen)}>
+        {typeof childrenHeader === "function"
+          ? childrenHeader(isOpen, setIsOpen)
+          : childrenHeader}
       </DropdownHeader>
       {isOpen && <ScrollView>{children}</ScrollView>}
     </DropdownContainer>
